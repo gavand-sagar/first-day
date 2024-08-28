@@ -1,0 +1,7 @@
+<p>product-list works!</p>
+
+<button (click)="handleAdd()">Add</button>
+<!-- {{data$|async|json}}
+ -->
+
+<div *ngFor="let p of products$|async">{{p.brand}}</div>

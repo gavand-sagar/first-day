@@ -16,11 +16,14 @@ import { CounterEffectService } from './CounterEffectService';
 import { GalleryComponent } from './gallery/gallery.component';
 import { catFactReducer } from './gallery/cat-fact-reducers';
 import { CatFactEffectsService } from './gallery/CatFact.service';
+import { ProductListComponent } from './product-list/product-list.component';
+import { productReducer } from './product-list/product-reducer';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GalleryComponent
+    GalleryComponent,
+    ProductListComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,8 @@ import { CatFactEffectsService } from './gallery/CatFact.service';
     StoreModule.forRoot<AppRootState>({
       count: counterReducer,
       catFact: catFactReducer,
-      cart: cartReducer
+      cart: cartReducer,
+      products: productReducer
     }),
     EffectsModule.forRoot([CounterEffectService, CatFactEffectsService]),
     OrdersModule,
