@@ -20,6 +20,9 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { productReducer } from './product-list/product-reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { InterceptorDemoComponent } from './interceptor-demo/interceptor-demo.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthTokenIterceptor } from './MyInterceptor.service';
+import { RequestLogInterceptor } from './RequestLogInterceptor';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,19 @@ import { InterceptorDemoComponent } from './interceptor-demo/interceptor-demo.co
     ProductListComponent,
     InterceptorDemoComponent
   ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthTokenIterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestLogInterceptor,
+      multi: true
+    }
+  ]
+  ,
   imports: [
     CommonModule,
     FormsModule,
