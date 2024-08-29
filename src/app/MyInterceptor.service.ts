@@ -6,6 +6,7 @@ import { map, Observable } from "rxjs";
 export class AuthTokenIterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log("Auth interceptor")
     let newheaders = req.headers.set("token", localStorage.getItem("app-token") ?? "default")
     let newReq = req.clone({
       headers: newheaders

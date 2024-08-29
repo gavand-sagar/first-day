@@ -8,7 +8,9 @@ import { Component } from '@angular/core';
 })
 export class InterceptorDemoComponent {
 
-  fact: string = '';
+  fact: any = {
+
+  };
   /**
    *
    */
@@ -18,7 +20,7 @@ export class InterceptorDemoComponent {
   handleClick() {
     this.http.get("https://catfact.ninja/fact")
       .subscribe((x: any) => {
-        this.fact = x.fact
+        this.fact = x
       })
   }
 

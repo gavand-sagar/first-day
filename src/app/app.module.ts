@@ -23,6 +23,7 @@ import { InterceptorDemoComponent } from './interceptor-demo/interceptor-demo.co
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthTokenIterceptor } from './MyInterceptor.service';
 import { RequestLogInterceptor } from './RequestLogInterceptor';
+import { ResposeModifierInterceptor } from './ResponseModifier';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,13 @@ import { RequestLogInterceptor } from './RequestLogInterceptor';
     InterceptorDemoComponent
   ],
   providers: [
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestLogInterceptor,
+      multi: true
+    }
+    ,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthTokenIterceptor,
@@ -39,7 +47,7 @@ import { RequestLogInterceptor } from './RequestLogInterceptor';
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: RequestLogInterceptor,
+      useClass: ResposeModifierInterceptor,
       multi: true
     }
   ]
