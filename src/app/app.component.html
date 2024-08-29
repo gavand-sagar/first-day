@@ -1,41 +1,11 @@
-<app-product-list></app-product-list>
-<!-- <app-gallery></app-gallery> -->
-<!-- <h1>Global counter</h1>
-<div>
-  <button (click)="incrementGlobalCounter()">Increment</button>
-</div>
+<button (click)="incrementGlobalCounter()">Increment</button>
 
-{{count$ | async}}
-
-
+<h1>Count - {{count$|async}}</h1>
 
 <hr/>
 
-<p *ngFor="let item of (items$|async)">
-  {{item}}
-</p> -->
 
-<!-- Items Count - {{itemsCount$ | async}}
-<br />
-<input type="text" [(ngModel)]="fruit" />
-<button (click)="handleClick()">Click </button>
-
-<p *ngFor="let item of (items$|async)">
+<h2>Items in global container</h2>
+<p *ngFor="let item of items$|async">
   {{item}}
 </p>
-
-<br />
-<br />
-<br />
-
-<input type="number" [(ngModel)]="firstNumber" />
-<br />
-<input type="number" [(ngModel)]="secondNumber" />
-
-<button (click)="handleNumberChange()">Click Here to change numbers</button>
-
-<br />
-
-Addition - {{this.addition$|async}}
-<br />
-Division - {{this.division$|async}} -->

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { CatFact } from './cat-fact-models';
 import { AppRootState } from '../AppRootState';
 import { Store } from '@ngrx/store';
-import { factSelector } from './cat-fact-selectors';
+import { factErrorSelector, factSelector } from './cat-fact-selectors';
 import { callCatFactApi, changeCatFactDataInTheStore } from './cat-fact-actions';
 
 @Component({
@@ -14,12 +14,18 @@ import { callCatFactApi, changeCatFactDataInTheStore } from './cat-fact-actions'
 export class GalleryComponent {
 
   fact$: Observable<string>;
-
+  error$ : Observable<string>
   /**
    *
    */
   constructor(private store: Store<AppRootState>) {
-    this.fact$ = this.store.select(factSelector)
+    this.fact$ = this.store.select(factSelector);
+    this.error$ = this.store.select(factErrorSelector);
+    this.error$.subscribe(x=>{
+      if(x){
+        alert(x)
+      }
+    })
   }
 
   handleClick() {

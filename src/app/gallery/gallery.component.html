@@ -1,4 +1,6 @@
 <p>gallery works!</p>
 <button (click)="handleClick()">click me</button>
 
-{{fact$|async}}
+<p *ngIf="(error$ |async)">{{error$|async}}</p>
+<p *ngIf="(error$ | async)">{{fact$|async}}</p>
+
