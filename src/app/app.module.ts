@@ -19,12 +19,14 @@ import { CatFactEffectsService } from './gallery/CatFact.service';
 import { ProductListComponent } from './product-list/product-list.component';
 import { productReducer } from './product-list/product-reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { InterceptorDemoComponent } from './interceptor-demo/interceptor-demo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GalleryComponent,
-    ProductListComponent
+    ProductListComponent,
+    InterceptorDemoComponent
   ],
   imports: [
     CommonModule,
