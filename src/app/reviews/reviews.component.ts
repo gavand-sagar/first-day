@@ -1,3 +1,4 @@
+import { NotificationService } from './../notification.service';
 import { Component, Inject } from '@angular/core';
 import { LOGGER, Logger } from '../logger.interface';
 import { ConsoleLogger } from '../console.logger';
@@ -12,14 +13,11 @@ export class ReviewsComponent {
   /**
    *
    */
-  constructor(@Inject(LOGGER) private loggers: Logger[]) {
+  constructor(private notificationService: NotificationService) {
   }
 
   doLog() {
-
-   for (const logger of this.loggers) {
-      logger.log("something")
-   }
+    this.notificationService.notify("this is my custom error");
   }
 
 }

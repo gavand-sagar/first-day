@@ -1,5 +1,17 @@
+<div class="floating-notification">
+  <div class="notification-item" *ngFor="let item of notificationObservable|async">{{item}}</div>
+</div>
+
+<hr />
+<br />
+
+<app-reviews></app-reviews>
+<br />
+<br />
+<br />
+
 <app-error-handling-demo></app-error-handling-demo>
 
-<hr/>
+<hr />
 
 <app-interceptor-demo></app-interceptor-demo>

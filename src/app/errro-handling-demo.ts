@@ -16,11 +16,7 @@ export class ErrorHandlingDemoComponent {
   }
 
   callToApi() {
-    this.http.get("https://catfact.ninja/fact5")
-      .pipe(catchError(e => {
-        alert("SOMETHING WENT WRONG")
-        return e
-      }))
+    this.http.get("https://catfact.ninja/factd")
       .subscribe((x: any) => {
         this.fact = x.fact
       })

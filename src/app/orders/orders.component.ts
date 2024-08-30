@@ -38,8 +38,9 @@ export class OrdersComponent {
 
   handleClick() {
     this.http.delete("https://catfact.ninja/fact")
-    .pipe(catchError(e=>e))
+    .subscribe(x=>{
 
+    })
 
     // this.orderService.incrementCount()
   }

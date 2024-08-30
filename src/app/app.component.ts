@@ -6,6 +6,7 @@ import { AppRootState } from './AppRootState';
 import { Cart } from './data/cart/cart.reducers';
 import { addProduct, incrementFirst, incrementSecond } from './data/cart/cart.actions';
 import { itemsSelector, totalItemsCountSelector, additionNumberSelector, divisionSelector } from './data/cart/cart.selectors';
+import { NotificationService } from './notification.service';
 
 @Component({
   selector: 'app-root',
@@ -20,12 +21,19 @@ export class AppComponent {
   itemsCount$: Observable<number>
   firstNumber: number = 0;
   secondNumber: number = 0;
-  addition$:Observable<number>;
-  division$:Observable<number>;
+  addition$: Observable<number>;
+  division$: Observable<number>;
+
+  public get notificationObservable() : Observable<string[]>{
+    return this.notificationService.notification$;
+  }
+
   /**
    *
    */
-  constructor(private store: Store<AppRootState>) {
+  constructor(private store: Store<AppRootState>,
+    private notificationService: NotificationService
+  ) {
     this.count$ = this.store.select("count");
     this.items$ = this.store.select(itemsSelector);
     this.itemsCount$ = this.store.select(totalItemsCountSelector);
@@ -38,7 +46,7 @@ export class AppComponent {
     this.store.dispatch(incrementSecond({ value: this.secondNumber }))
   }
 
-  incrementGlobalCounter(){
+  incrementGlobalCounter() {
     this.store.dispatch(increment())
   }
 

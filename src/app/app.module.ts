@@ -29,6 +29,7 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { LOGGER } from './logger.interface';
 import { AlertLogger, ConsoleLogger } from './console.logger';
 import { ErrorHandlingDemoComponent } from './errro-handling-demo';
+import { ErrorInterceptor } from './ErrorInterceptor';
 
 @NgModule({
   declarations: [
@@ -58,14 +59,9 @@ import { ErrorHandlingDemoComponent } from './errro-handling-demo';
     //   multi: true
     // },
     {
-      provide: LOGGER,
-      useClass: AlertLogger,
-      multi:true
-    },
-    {
-      provide: LOGGER,
-      useClass: ConsoleLogger,
-      multi:true
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
     }
   ]
   ,
