@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-interceptor-demo',
@@ -19,7 +20,10 @@ export class InterceptorDemoComponent {
 
   handleClick() {
     this.http.get("https://catfact.ninja/fact")
-      .subscribe((x: any) => {
+      .pipe(catchError(e => {
+        alert("SOMETHING WENT WRONG")
+        return e
+      })).subscribe((x: any) => {
         this.fact = x
       })
   }

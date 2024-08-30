@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { OrdersService } from './orders.service';
+import { HttpClient } from '@angular/common/http';
+import { UserManagementService } from '../UserMangement';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-orders',
@@ -9,19 +12,36 @@ import { OrdersService } from './orders.service';
 export class OrdersComponent {
 
 
-  public get OrderCount(){
+  public get OrderCount() {
     return this.orderService.ordersCount;
+  }
+
+  result: any;
+
+  public get role(){
+    return this.userService.role;
   }
 
   /**
    *
    */
-  constructor(private orderService:OrdersService) {
+  constructor(private orderService: OrdersService,
+    private userService:UserManagementService,
+    private http: HttpClient
+  ) {
 
   }
 
+  toggleUserRole(){
+    this.userService.changeUserRole();
+  }
+
   handleClick() {
-    this.orderService.incrementCount()
-    }
+    this.http.delete("https://catfact.ninja/fact")
+    .pipe(catchError(e=>e))
+
+
+    // this.orderService.incrementCount()
+  }
 
 }

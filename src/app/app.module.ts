@@ -24,31 +24,48 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthTokenIterceptor } from './MyInterceptor.service';
 import { RequestLogInterceptor } from './RequestLogInterceptor';
 import { ResposeModifierInterceptor } from './ResponseModifier';
+import { ForumsComponent } from './forums/forums.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { LOGGER } from './logger.interface';
+import { AlertLogger, ConsoleLogger } from './console.logger';
+import { ErrorHandlingDemoComponent } from './errro-handling-demo';
 
 @NgModule({
   declarations: [
     AppComponent,
     GalleryComponent,
     ProductListComponent,
-    InterceptorDemoComponent
+    InterceptorDemoComponent,
+    ForumsComponent,
+    ReviewsComponent,
+    ErrorHandlingDemoComponent
   ],
   providers: [
-
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: RequestLogInterceptor,
+    //   multi: true
+    // }
+    // ,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthTokenIterceptor,
+    //   multi: true
+    // },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: ResposeModifierInterceptor,
+    //   multi: true
+    // },
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: RequestLogInterceptor,
-      multi: true
-    }
-    ,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthTokenIterceptor,
-      multi: true
+      provide: LOGGER,
+      useClass: AlertLogger,
+      multi:true
     },
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ResposeModifierInterceptor,
-      multi: true
+      provide: LOGGER,
+      useClass: ConsoleLogger,
+      multi:true
     }
   ]
   ,
