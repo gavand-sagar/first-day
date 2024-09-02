@@ -31,6 +31,8 @@ import { AlertLogger, ConsoleLogger } from './console.logger';
 import { ErrorHandlingDemoComponent } from './errro-handling-demo';
 import { ErrorInterceptor } from './ErrorInterceptor';
 import { RetryInterceptor } from './RetryInterceptor';
+import { CacheDemoComponent } from './cache-demo/cache-demo.component';
+import { CacheInterceptor } from './CacheInterceptor';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { RetryInterceptor } from './RetryInterceptor';
     InterceptorDemoComponent,
     ForumsComponent,
     ReviewsComponent,
-    ErrorHandlingDemoComponent
+    ErrorHandlingDemoComponent,
+    CacheDemoComponent
   ],
   providers: [
     // {
@@ -66,9 +69,14 @@ import { RetryInterceptor } from './RetryInterceptor';
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: RetryInterceptor,
+      useClass: CacheInterceptor,
       multi: true
     }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: RetryInterceptor,
+    //   multi: true
+    // }
   ]
   ,
   imports: [
