@@ -16,9 +16,9 @@ export class ErrorHandlingDemoComponent {
   }
 
   callToApi() {
-    this.http.get("https://catfact.ninja/factd")
+    this.http.get("http://localhost:3001/get-data")
       .subscribe((x: any) => {
-        this.fact = x.fact
+        this.fact = x.message
       })
   }
 

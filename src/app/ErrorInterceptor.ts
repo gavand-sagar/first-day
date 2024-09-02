@@ -18,7 +18,20 @@ export class ErrorInterceptor implements HttpInterceptor {
       .pipe(
         map(x => x),
         catchError(x => {
-          this.notificatinService.notify(x.message)
+          console.log(x)
+          if(x.status == 500){
+            this.notificatinService.notify("Internal Server Error.");
+            return EMPTY;
+          }
+          if(x.status == 404){
+            this.notificatinService.notify("Request not found.");
+            return EMPTY;
+          }
+          if(x.status == 400){
+            this.notificatinService.notify("Bad Request.");
+            return EMPTY;
+          }
+          this.notificatinService.notify("Someting went wrong.")
           return EMPTY
         }))
   }

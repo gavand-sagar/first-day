@@ -14,6 +14,7 @@ import { NotificationService } from './notification.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
   title = 'first-day';
   count$: Observable<number>;
   items$: Observable<string[]>;
@@ -24,7 +25,7 @@ export class AppComponent {
   addition$: Observable<number>;
   division$: Observable<number>;
 
-  public get notificationObservable() : Observable<string[]>{
+  public get notificationObservable(): Observable<string[]> {
     return this.notificationService.notification$;
   }
 
@@ -52,6 +53,10 @@ export class AppComponent {
 
   handleClick() {
     this.store.dispatch(addProduct({ productName: this.fruit }))
+  }
+
+  handleSimpleButtonClick() {
+    this.notificationService.notify("My custome notificatin", 1000)
   }
 
 
