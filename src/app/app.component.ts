@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, retry } from 'rxjs';
 import { increment } from './counter.actions';
 import { AppRootState } from './AppRootState';
 import { Cart } from './data/cart/cart.reducers';
@@ -26,7 +26,7 @@ export class AppComponent {
   division$: Observable<number>;
 
   public get notificationObservable(): Observable<string[]> {
-    return this.notificationService.notification$;
+    return this.notificationService.notification$.pipe();
   }
 
   /**

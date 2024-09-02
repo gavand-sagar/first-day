@@ -30,6 +30,7 @@ import { LOGGER } from './logger.interface';
 import { AlertLogger, ConsoleLogger } from './console.logger';
 import { ErrorHandlingDemoComponent } from './errro-handling-demo';
 import { ErrorInterceptor } from './ErrorInterceptor';
+import { RetryInterceptor } from './RetryInterceptor';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,11 @@ import { ErrorInterceptor } from './ErrorInterceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RetryInterceptor,
       multi: true
     }
   ]

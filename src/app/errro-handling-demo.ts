@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
-import { catchError } from "rxjs";
+import { catchError, retry } from "rxjs";
 
 @Component({
   selector: 'app-error-handling-demo',
