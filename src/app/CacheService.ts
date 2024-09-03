@@ -36,6 +36,8 @@ export class CashService {
       let data: MyCachEntity<any> = await response?.json();
       if (data && data.expiresAt > new Date().getTime()) {
         return data.data
+      } else {
+        caches.delete(req.urlWithParams);
       }
     }
     return undefined
