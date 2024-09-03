@@ -12,6 +12,7 @@ export class CacheInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+    //cache first approach
     let cashedData = this.casheService.get(req);
     if (cashedData) {
       return of(cashedData)

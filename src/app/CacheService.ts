@@ -13,19 +13,23 @@ export class CashService {
 
   expirationTimeInSeconds = 10
 
-  cache = new Map<string, MyCachEntity<HttpResponse<any>>>();
+  //cache = new Map<string, MyCachEntity<HttpResponse<any>>>();
 
   set(req: HttpRequest<any>, response: HttpResponse<any>) {
-    this.cache.set(req.urlWithParams, {
+    let obj = {
       data: response,
       expiresAt: new Date().getTime() + (this.expirationTimeInSeconds * 1000)
-    });
+    };
+    localStorage.setItem(req.urlWithParams, JSON.stringify(obj));
   }
 
   get(req: HttpRequest<any>): HttpResponse<any> | undefined {
-    let oldData = this.cache.get(req.urlWithParams)
-    if (oldData && oldData.expiresAt > new Date().getTime()) {
-      return oldData.data;
+    let oldDatastr = localStorage.getItem(req.urlWithParams)
+    if (oldDatastr) {
+      let oldData: MyCachEntity<any> = JSON.parse(oldDatastr);
+      if (oldData.expiresAt > new Date().getTime()) {
+        return oldData.data;
+      }
     }
     return;
   }
