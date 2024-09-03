@@ -13,37 +13,21 @@ import { cartReducer } from './data/cart/cart.reducers';
 import { FormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { CounterEffectService } from './CounterEffectService';
-import { GalleryComponent } from './gallery/gallery.component';
 import { catFactReducer } from './gallery/cat-fact-reducers';
 import { CatFactEffectsService } from './gallery/CatFact.service';
-import { ProductListComponent } from './product-list/product-list.component';
 import { productReducer } from './product-list/product-reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { InterceptorDemoComponent } from './interceptor-demo/interceptor-demo.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthTokenIterceptor } from './MyInterceptor.service';
-import { RequestLogInterceptor } from './RequestLogInterceptor';
-import { ResposeModifierInterceptor } from './ResponseModifier';
-import { ForumsComponent } from './forums/forums.component';
-import { ReviewsComponent } from './reviews/reviews.component';
-import { LOGGER } from './logger.interface';
-import { AlertLogger, ConsoleLogger } from './console.logger';
-import { ErrorHandlingDemoComponent } from './errro-handling-demo';
 import { ErrorInterceptor } from './ErrorInterceptor';
-import { RetryInterceptor } from './RetryInterceptor';
 import { CacheDemoComponent } from './cache-demo/cache-demo.component';
 import { CacheInterceptor } from './CacheInterceptor';
+import { ChildComponent } from './child/child.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GalleryComponent,
-    ProductListComponent,
-    InterceptorDemoComponent,
-    ForumsComponent,
-    ReviewsComponent,
-    ErrorHandlingDemoComponent,
-    CacheDemoComponent
+    CacheDemoComponent,
+    ChildComponent
   ],
   providers: [
     // {

@@ -2,7 +2,11 @@
   <div class="notification-item" *ngFor="let item of notificationObservable|async">{{item}}</div>
 </div>
 
-<app-cache-demo></app-cache-demo>
+Parent Button <button (click)="IncrementNumber()">INC</button>
+
+<app-child [value]="firstNumber"></app-child>
+
+<!-- <app-cache-demo></app-cache-demo> -->
 
 <!--
 <hr />

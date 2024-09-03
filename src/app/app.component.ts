@@ -14,6 +14,9 @@ import { NotificationService } from './notification.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  IncrementNumber() {
+    this.firstNumber++
+  }
 
   title = 'first-day';
   count$: Observable<number>;
