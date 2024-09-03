@@ -1,0 +1,61 @@
+Angular Performance Optimization Techniques
+
+Lazy Loading Modules
+Load modules only when needed, reducing the initial load time.
+
+Code Splitting
+Split the application into smaller bundles to load only the necessary code for the current view.
+
+Optimize API Calls
+Reduce the number of API calls, batch requests, and implement efficient pagination and filtering on the server side.
+
+Dynamic Imports
+Use dynamic imports for features that are rarely used or loaded only upon user interaction.
+
+Tree Shaking
+Remove unused code during the build process to reduce bundle size.
+
+Ahead-of-Time (AOT) Compilation
+Compile Angular templates during the build phase, reducing the runtime overhead.
+
+OnPush Change Detection Strategy
+Use OnPush to limit change detection cycles, which can minimize unnecessary checks.
+
+Pure Pipes
+Implement pure pipes for immutability and performance, as they only execute when their inputs change.
+
+*TrackBy with ngFor
+Use trackBy with *ngFor to improve the performance of list rendering by minimizing DOM manipulations.
+
+Virtual Scrolling
+Implement virtual scrolling for large lists to render only the visible items.
+
+Optimizing Template Bindings
+Minimize the number of bindings and avoid complex expressions directly in the template.
+
+Reduce the Number of Components
+Limit the number of components and directives in critical paths to reduce the rendering overhead.
+
+
+Service Worker & Caching
+Use Angular Service Worker for caching static assets and API responses, improving load times and offline support.
+
+
+HTTP Interceptor Caching
+Implement caching with HTTP interceptors to avoid redundant network requests and speed up data retrieval.
+
+
+
+Server-Side Rendering (SSR)
+Use Angular Universal for server-side rendering, improving initial load time and SEO.
+
+
+Bundle Analyzer
+Use tools like Webpack Bundle Analyzer to analyze and optimize the bundle size.
+
+Deferred Initialization
+Delay initialization of services and components until they are actually needed.
+
+Content Delivery Network (CDN)
+Serve static assets through a CDN to reduce latency and improve delivery speed.
+
