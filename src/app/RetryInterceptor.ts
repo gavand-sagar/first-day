@@ -4,8 +4,9 @@ import { catchError, count, delay, EMPTY, map, Observable, of, retry, tap, throw
 export class RetryInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(tap(x=>{
-      console.log(x)
+    return next.handle(req).pipe(retry({
+      count: 3,
+      delay: 5000
     }))
   }
 
