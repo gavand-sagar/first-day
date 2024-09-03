@@ -11,27 +11,34 @@ interface MyCachEntity<T> {
 })
 export class CashService {
 
-  expirationTimeInSeconds = 10
-
-  //cache = new Map<string, MyCachEntity<HttpResponse<any>>>();
+  expirationTimeInSeconds = 100
 
   set(req: HttpRequest<any>, response: HttpResponse<any>) {
+
     let obj = {
       data: response,
       expiresAt: new Date().getTime() + (this.expirationTimeInSeconds * 1000)
     };
-    localStorage.setItem(req.urlWithParams, JSON.stringify(obj));
+    if ('caches' in window) {
+      caches.open("my-cache-store")
+        .then(c => {
+          c.put(req.urlWithParams, new Response(JSON.stringify(obj)))
+        })
+    }
   }
 
-  get(req: HttpRequest<any>): HttpResponse<any> | undefined {
-    let oldDatastr = localStorage.getItem(req.urlWithParams)
-    if (oldDatastr) {
-      let oldData: MyCachEntity<any> = JSON.parse(oldDatastr);
-      if (oldData.expiresAt > new Date().getTime()) {
-        return oldData.data;
+
+
+  async get(req: HttpRequest<any>): Promise<HttpResponse<any> | undefined> {
+    if ('caches' in window) {
+      let c = await caches.open("my-cache-store");
+      let response = await c.match(req.urlWithParams)
+      let data: MyCachEntity<any> = await response?.json();
+      if (data && data.expiresAt > new Date().getTime()) {
+        return data.data
       }
     }
-    return;
+    return undefined
   }
 
 }
